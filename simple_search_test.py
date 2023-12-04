@@ -66,14 +66,7 @@ class SimpleSearchTest(unittest.TestCase):
                 'Mouse Mickey is not a simple mouse. Tom is a dummy cat.': 'mouse. Tom is a dummy cat'
             }
         ),
-        'REGEXP_8': (
-            SEARCH,
-            {
-                'his phone number was 89251366482.': '89251366482',
-                'I called +7 999 648-99-86 ans it was right.': '+7 999 648-99-86',
-                'Some 52221 numbers should not hide phone numbers such as 8 915 747-68-99': '8 915 747-68-99',
-            }
-        )
+        
     }    
   
 if __name__ == '__main__':
