@@ -1,54 +1,70 @@
 #!/usr/bin/env python3
 
-from regexp_test import regexp_test, MATCH
-import simple_match
+# Для каждого регулярного выражения, которое требуется написать,
+# указаны строки, соответствующие этому выражению (они отмечены знаком +),
+# а также строки, не соответствующие этому выражению (отмечены знаком -)
 
-import unittest
+# + a
+# + ab
+# - b
+# - ba
+REGEXP_1 = r'^a$|^ab$'
 
-@regexp_test(simple_match)
-class SimpleMatchTest(unittest.TestCase):
-    TEST_DATA = {
-        'REGEXP_1': (    # название тестируемого регулярного выражения
-            MATCH,       # тип тестируемого метода — MATCH для этого файла
-            ['a', 'ab'], # список строк, соответствующих шаблону
-            ['b', 'ba']  # список строк, не соответствующих шаблону
-        ),
-        'REGEXP_2': (
-            MATCH,
-            ['aab', 'abb', 'acb'],
-            ['ab', 'aabc']
-        ),
-        'REGEXP_3': (
-            MATCH,
-            ['sofia.mp3', 'sofia.mp4'],
-            ['sofia.mp7', 'sofia.mp34']
-        ),
-        'REGEXP_4': (
-            MATCH,
-            ['taverna', 'versus', 'vera', 'zveri'],
-            ['zver']
-        ),
-        'REGEXP_5': (
-            MATCH,
-            ['aaa', 'bbb'],
-            ['a', 'aa', 'aaaa', 'b', 'bb', 'bbbb']
-        ),
-        'REGEXP_6': (
-            MATCH,
-            ['OkOkOk', 'ababab'],
-            ['Ok', 'OkOk', 'OkOkOkOk', 'ab', 'abab', 'abababab']
-        ),
-        'REGEXP_7': (
-            MATCH,
-            ['aaa Aaa aaa', 'aaa aaa Aaa', 'Aaa aaa aaa'],
-            ['aaa', 'aaa aaa', 'A', 'aaa A aaa']
-        ),
-        'REGEXP_8': (
-            MATCH,
-            ['abc', 'abc03', 'a-b-c-3', 'a.b.c.0'],
-            ['Aabc', 'abc1', '#abc']
-        )
-    }
+# + aab
+# + abb
+# + acb
+# - ab
+# - aabc
+REGEXP_2 = r'^aab$|^abb$|^acb$'
 
-if __name__ == '__main__':
-    unittest.main()
+# + sofia.mp3
+# + sofia.mp4
+# - sofia.mp7
+# - sofia.mp34
+REGEXP_3 = r'^sofia\.mp[34]$'
+
+# + taverna
+# + versus
+# + vera
+# + zveri
+# - zver
+REGEXP_4 = r'^taverna$|^versus$|^vera$|^zveri$'
+
+# - a
+# - aa
+# + aaa
+# - aaaa
+# - b
+# - bb
+# + bbb
+# - bbbb
+# - ccc
+REGEXP_5 = r'^aaa$|^bbb$'
+
+# - Ok
+# - OkOk
+# + OkOkOk
+# - OkOkOkOk
+# - ab
+# - abab
+# + ababab
+# - abababab
+REGEXP_6 = r'^OkOkOk$|^ababab$'
+
+# - aaa
+# - aaa aaa
+# + aaa Aaa aaa
+# + aaa aaa Aaa
+# + Aaa aaa aaa
+# - A
+# - aaa A aaa
+REGEXP_7 = r'^aaa Aaa aaa$|^aaa aaa Aaa$|^Aaa aaa aaa$'
+
+# + abc
+# + abc03
+# + a-b-c-3
+# + a.b.c.0
+# - Aabc
+# - abc1
+# - #abc
+REGEXP_8 = r'^abc$|^abc03$|^a-b-c-3$|^a\.b\.c\.0$'
